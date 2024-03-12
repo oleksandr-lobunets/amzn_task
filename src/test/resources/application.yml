@@ -1,2 +1,39 @@
 
-logging.level.org.springframework.data.mongodb=debug
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb: debug
+        cache: debug
+    com:
+      github:
+        ben-manes:
+          caffeine: debug
+
+
+application:
+  security:
+    jwt:
+      secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+      expiration: 86400000 # a day
+  file:
+    report: src/test/resources/test_report.json
+  fixedRate:
+    in:
+      milliseconds: 60000
+  initialDelay:
+    in:
+      milliseconds: 30000
+  spring:
+    cache:
+      cache-names:
+        - DateStats
+        - Dates
+        - Asins
+        - AsinsStats
+      caffeine:
+        spec:
+          initialCapacity: 50
+          maximumSize: 10
+          expireAfterAccess: 300s

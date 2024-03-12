@@ -1,8 +1,7 @@
-package com.agencyamazon.entity.dao.report.sales;
+package com.agencyamazon.domain.model.report.sales;
 
-import com.agencyamazon.entity.dao.report.traffic.TrafficByDate;
+import com.agencyamazon.domain.model.report.traffic.TrafficByDate;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

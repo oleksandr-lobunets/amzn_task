@@ -1,11 +1,11 @@
 package com.agencyamazon.repository;
 
-import com.agencyamazon.entity.traffic.SalesAndTrafficByAsin;
+import com.agencyamazon.domain.model.user.AppUser;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;
 
-public interface SalesAndTrafficByAsinRepository extends MongoRepository<SalesAndTrafficByAsin, String> {
-    Optional<SalesAndTrafficByAsin> findByParentAsin(String parentAsin);
-
+public interface UserRepository extends MongoRepository<AppUser, Long> {
+    Optional<AppUser> findByEmail(String email);
+    Optional<AppUser> findByUsername(String username);
 }

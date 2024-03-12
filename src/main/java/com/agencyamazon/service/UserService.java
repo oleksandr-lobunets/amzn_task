@@ -1,2 +1,7 @@
-package com.agencyamazon.service;public class UserService {
+package com.agencyamazon.service;
+
+import org.springframework.security.core.userdetails.UserDetailsService;
+
+public interface UserService {
+    UserDetailsService userDetailsService();
 }

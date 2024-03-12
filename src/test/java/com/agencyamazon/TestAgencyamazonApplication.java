@@ -10,14 +10,14 @@ import org.testcontainers.utility.DockerImageName;
 @TestConfiguration(proxyBeanMethods = false)
 public class TestAgencyamazonApplication {
 
-	@Bean
-	@ServiceConnection
-	MongoDBContainer mongoDbContainer() {
-		return new MongoDBContainer(DockerImageName.parse("mongo:latest"));
-	}
+    @Bean
+    @ServiceConnection
+    MongoDBContainer mongoDbContainer() {
+        return new MongoDBContainer(DockerImageName.parse("mongo:latest"));
+    }
 
-	public static void main(String[] args) {
-		SpringApplication.from(AgencyamazonApplication::main).with(TestAgencyamazonApplication.class).run(args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.from(AgencyamazonApplication::main).with(TestAgencyamazonApplication.class).run(args);
+    }
 
 }

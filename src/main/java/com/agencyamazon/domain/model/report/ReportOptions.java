@@ -1,4 +1,4 @@
-package com.agencyamazon.entity.dao.report;
+package com.agencyamazon.domain.model.report;
 
 import lombok.Data;
 

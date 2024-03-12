@@ -1,13 +1,5 @@
-package com.agencyamazon.entity.dao.report.sales;
+package com.agencyamazon.domain.model.report.sales;
 
-import com.agencyamazon.entity.dao.report.sales.AverageSalesPerOrderItem;
-import com.agencyamazon.entity.dao.report.sales.AverageSalesPerOrderItemB2B;
-import com.agencyamazon.entity.dao.report.sales.AverageSellingPrice;
-import com.agencyamazon.entity.dao.report.sales.AverageSellingPriceB2B;
-import com.agencyamazon.entity.dao.report.sales.ClaimsAmount;
-import com.agencyamazon.entity.dao.report.sales.OrderedProductSales;
-import com.agencyamazon.entity.dao.report.sales.OrderedProductSalesB2B;
-import com.agencyamazon.entity.dao.report.sales.ShippedProductSales;
 import lombok.Data;
 
 @Data

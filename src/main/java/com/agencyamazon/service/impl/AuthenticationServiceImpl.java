@@ -1,4 +1,4 @@
-package com.agencyamazon.service;
+package com.agencyamazon.service.impl;
 
 
 import com.agencyamazon.domain.dto.JwtAuthenticationResponse;
@@ -6,31 +6,33 @@ import com.agencyamazon.domain.dto.SigninRequest;
 import com.agencyamazon.domain.dto.SignUpRequest;
 import com.agencyamazon.domain.model.user.AppUser;
 import com.agencyamazon.repository.UserRepository;
-import com.agencyamazon.security.JwtTokenUtil;
+import com.agencyamazon.service.AuthenticationService;
+import com.agencyamazon.service.JwtService;
 import com.agencyamazon.service.exception.UserAlreadyExistsException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 @Slf4j
-public class AuthenticationServiceImpl {
+public class AuthenticationServiceImpl implements AuthenticationService {
     private final UserRepository userRepository;
     private final PasswordEncoder encoder;
-//    private final JwtTokenUtil jwtTokenUtil;
+    private final JwtService jwtService;
+    private final AuthenticationManager authenticationManager;
 
-
-    public AppUser createUser(final SignUpRequest request) {
+    @Override
+    public JwtAuthenticationResponse signup(final SignUpRequest request) {
         createUserValidation(request);
         AppUser appUser = new AppUser(request.getUsername(), request.getEmail(), encoder.encode(request.getPassword()));
-        return userRepository.save(appUser);
+        userRepository.save(appUser);
+
+        var jwt = jwtService.generateToken(appUser);
+        return JwtAuthenticationResponse.builder().token(jwt).build();
     }
 
     private void createUserValidation(final SignUpRequest request) {
@@ -40,22 +42,20 @@ public class AuthenticationServiceImpl {
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new UserAlreadyExistsException("AppUser with email %s already exists".formatted(request.getEmail()));
         }
-        if ( findByUsername(request.getUsername()).isPresent()) {
+        if (userRepository.findByUsername(request.getUsername()).isPresent()) {
             throw new UserAlreadyExistsException("AppUser with username %s already exists".formatted(request.getUsername()));
         }
     }
 
-    public Optional<AppUser> findByUsername(final String username) {
-        return userRepository.findByUsername(username);
+
+    @Override
+    public JwtAuthenticationResponse signin(final SigninRequest request) {
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+        var user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid email or password"));
+        var jwt = jwtService.generateToken(user);
+        return JwtAuthenticationResponse.builder().token(jwt).build();
     }
 
-    public JwtAuthenticationResponse signIn(SigninRequest request) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtTokenUtil.generateToken(authentication);
-
-        return new JwtAuthenticationResponse(jwt);
-    }
 }

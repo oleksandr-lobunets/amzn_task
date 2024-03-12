@@ -1,4 +1,4 @@
-package com.agencyamazon.entity.dto;
+package com.agencyamazon.domain.dto;
 
 
 import lombok.AllArgsConstructor;

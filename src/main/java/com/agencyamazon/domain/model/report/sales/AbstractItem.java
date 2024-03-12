@@ -1,4 +1,4 @@
-package com.agencyamazon.entity.dao.report.sales;
+package com.agencyamazon.domain.model.report.sales;
 
 
 import lombok.AllArgsConstructor;

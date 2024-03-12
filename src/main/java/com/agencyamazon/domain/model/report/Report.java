@@ -1,7 +1,7 @@
-package com.agencyamazon.entity.dao.report;
+package com.agencyamazon.domain.model.report;
 
-import com.agencyamazon.entity.dao.report.sales.SalesAndTrafficByAsin;
-import com.agencyamazon.entity.dao.report.sales.SalesAndTrafficByDate;
+import com.agencyamazon.domain.model.report.sales.SalesAndTrafficByAsin;
+import com.agencyamazon.domain.model.report.sales.SalesAndTrafficByDate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

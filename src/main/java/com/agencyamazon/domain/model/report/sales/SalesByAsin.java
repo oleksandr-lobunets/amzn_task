@@ -1,7 +1,5 @@
-package com.agencyamazon.entity.dao.report.sales;
+package com.agencyamazon.domain.model.report.sales;
 
-import com.agencyamazon.entity.dao.report.sales.OrderedProductSales;
-import com.agencyamazon.entity.dao.report.sales.OrderedProductSalesB2B;
 import lombok.Data;
 
 @Data

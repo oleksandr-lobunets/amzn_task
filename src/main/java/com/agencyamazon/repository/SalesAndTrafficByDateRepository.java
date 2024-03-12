@@ -1,15 +1,21 @@
 package com.agencyamazon.repository;
 
-import com.agencyamazon.report.traffic.SalesAndTrafficByAsin;
-import org.springframework.data.domain.Example;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import com.agencyamazon.domain.model.report.sales.SalesAndTrafficByDate;
+import com.agencyamazon.domain.dto.SalesSummary;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
-public interface SalesAndTrafficByAsinRepository extends MongoRepository<SalesAndTrafficByAsin, String> {
-    Optional<SalesAndTrafficByAsin> findByParentAsin(String parentAsin);
+public interface SalesAndTrafficByDateRepository {
+    SalesAndTrafficByDate insertAll(SalesAndTrafficByDate item);
 
-//    Collection<SalesAndTrafficByAsin> findByParentAsins(List<String> asins);
+    Collection<SalesAndTrafficByDate> insertAll(List<SalesAndTrafficByDate> items);
+
+//    SalesAndTrafficByDateRepositoryImpl.SalesStats getStatsByDateRange(Date startDate, Date endDate);
+    List<SalesAndTrafficByDate> getSalesAndTrafficByDateRange(Date startDate, Date endDate);
+
+    SalesSummary getAggregatedStats();
+
+    List<SalesAndTrafficByDate> getSalesAndTrafficByDates(List<Date> dates);
 }

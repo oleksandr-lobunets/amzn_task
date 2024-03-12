@@ -1,6 +1,5 @@
-package com.agencyamazon.entity.dao.report;
+package com.agencyamazon.domain.model.report;
 
-import com.agencyamazon.entity.dao.report.ReportOptions;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

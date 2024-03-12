@@ -1,9 +1,9 @@
-package com.agencyamazon.entity.dto;
+package com.agencyamazon.domain.dto;
 
 import lombok.Data;
 
 @Data
-public class SignInRequest {
-    private String username;
+public class SigninRequest {
+    private String email;
     private String password;
 }

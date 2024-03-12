@@ -1,12 +1,14 @@
-package com.agencyamazon.entity.dto;
+package com.agencyamazon.domain.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 public class JwtAuthenticationResponse {
     private String token;
 }
